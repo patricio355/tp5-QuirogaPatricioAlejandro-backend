@@ -1,0 +1,92 @@
+<br>
+<h3 class="text-center">Lista de Tikets</h3>
+  <table class="table bg-light">
+    <thead class="bg-success-subtle">
+      <tr>
+        <th scope="col">Precio ticket</th>
+        <th scope="col">Fecha de Compra</th>
+        <th scope="col">Espectador</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of tickets">
+        <th scope="row">${{ticket.precioTicket}}</th>
+        <td>{{ticket.fechaCompra}}</td>
+        <td>{{ticket.espectador.nombre}} {{ticket.espectador.apellido}}</td>
+        <td><button type="submit" (click)="modificarTicket(ticket._id)" class="btn btn-success">Modificar</button>
+        <button type="submit" (click)="eliminarTicket(ticket._id)" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="submit" (click)="agregarTicket()" class="btn btn-primary">Agregar</button>
+
+<br>
+<br>
+<!--   
+  <div class="row bg-dark">
+    <div class="col-6" >
+    <section>
+      <br>
+      <h3 class="text-center bg-info-subtle">Locales</h3>
+        <br>
+    
+        <table class="table bg-light">
+          <thead class="bg-success-subtle">
+            <tr>
+              <th scope="col">DNI</th>
+              <th scope="col">Fecha de Cobro</th>
+              <th scope="col">Precio Cobrado</th>
+              <th scope="col">Precio Real</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ticket of tickets">
+              <ng-container *ngIf="ticket.tipoEspectador == 'l' ">
+              <th scope="row">{{ticket.dni}}</th>
+              <td>{{ticket.fechaCobro | date:'longDate'}}</td>
+              <td>${{ticket.precioCobrado}}</td>
+              <td>${{ticket.precioReal}}</td>
+            </ng-container>
+            </tr>
+          </tbody>
+        </table>
+    
+      </section>
+    
+    </div>
+      
+    <div class="col-6"> 
+      <section>
+        <br>
+        <h3 class="text-center bg-info-subtle">Extranjeros</h3>
+        <br>
+    
+        <table class="table bg-light">
+          <thead class="bg-success-subtle">
+            <tr>
+              <th scope="col">DNI</th>
+              <th scope="col">Fecha de Cobro</th>
+              <th scope="col">Precio Cobrado</th>
+              <th scope="col">Precio Real</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ticket of tickets">
+              <ng-container *ngIf="ticket.tipoEspectador == 'e' ">
+              <th scope="row">{{ticket.dni}}</th>
+              <td>{{ticket.fechaCobro | date:'longDate'}}</td>
+              <td>${{ticket.precioCobrado}}</td>
+              <td>${{ticket.precioReal}}</td>
+            </ng-container>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    
+    
+    </div>
+    
+      </div> -->

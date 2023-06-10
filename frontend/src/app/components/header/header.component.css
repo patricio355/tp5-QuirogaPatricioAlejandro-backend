@@ -1,0 +1,21 @@
+.navbar {
+    background-image: linear-gradient(to right, #000000, #333333);
+    color: white;
+  }
+
+  .navbar-brand {
+    font-weight: bold;
+  }
+
+
+
+  .nav-link {
+    color: white;
+    margin: 0 10px;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-nav {
+      margin: 10px 0;
+    }
+  }

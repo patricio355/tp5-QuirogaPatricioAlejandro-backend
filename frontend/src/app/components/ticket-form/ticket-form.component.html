@@ -1,0 +1,38 @@
+<form class="container col-5">
+    <div class="mb-3">
+      <label for="iddni" class="form-label">Precio Ticket</label> 
+      
+  
+      <input type="number" class="form-control" id="iddni" [(ngModel)]="ticket.precioTicket" name="dni" >
+    </div>
+   
+    <div class="mb-3">
+        <label for="idprecio" class="form-label">Categoria Espectador</label>
+        <select name="espectador" id="id" [(ngModel)]="ticket.categoriaEspectador">
+            <option value="l">Local</option>
+            <option value="e">Extranjero</option>
+          </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="idte" class="form-label">Fecha de Compra</label>
+        <input type="text" class="form-control" id="idprecio" [(ngModel)]="ticket.fechaCompra" name="tipoEspectador" >
+      </div>
+
+      <div class="mb-3">
+        <label for="idfc" class="form-label">Espectador </label>
+       
+      </div>
+      <select name="espectador" id="id" [(ngModel)]="ticket.espectador">
+        <option *ngFor=" let e of espectadores" [ngValue]="e">{{e.nombre}}</option>
+      </select>
+    
+   
+    <br>
+    <br>
+
+    <button  type="submit"  class="btn btn-primary" (click)="guardarTicket()">Guardar</button>
+    
+    <button  type="submit"  class="btn btn-primary" (click)="modificarTicket(ticket)">Modificar</button>
+ 
+</form>
