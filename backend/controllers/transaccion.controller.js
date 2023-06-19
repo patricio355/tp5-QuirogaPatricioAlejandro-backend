@@ -22,7 +22,6 @@ transaccionCtrl.getTransaccionesCliente = async (req, res) => {
 //dar de alta una transaccion
 transaccionCtrl.createTransaccion = async (req, res) => {
 var transaccion = new Transaccion(req.body);
-// console.log(transaccion);
 try {
 await transaccion.save();
 res.json({

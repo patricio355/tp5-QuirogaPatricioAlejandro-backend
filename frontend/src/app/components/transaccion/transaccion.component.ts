@@ -19,6 +19,7 @@ resultado!:number;
 
   origen!:string;
   destino!:string;
+  n:number = 1;
 
 constructor(private servicio: TransaccionService){
   this.transacciones = new Array<Transaccion>();
@@ -27,6 +28,7 @@ constructor(private servicio: TransaccionService){
 }
 
 obtenerTransacciones(){
+  this.transacciones = new Array<Transaccion>();
   this.servicio.getTransacciones().subscribe(
     result=>{
       result.forEach((element:any) => {
@@ -61,19 +63,21 @@ obtenerConversion(de : string , a :string , cant :number){
   transaccion.cantidadDestino=this.resultado;
   transaccion.monedaDestino=this.segundo;
   transaccion.monedaOrigen=this.primero;
-  transaccion.tasaConversion=1;
-  transaccion.emailCliente="hola@gmail.com";
+  transaccion.tasaConversion=this.n;
+  transaccion.emailCliente="Desconocido";
+  
   console.log(transaccion)
   this.servicio.altaDeTransaccion(transaccion).subscribe(
     result=>{
-      alert("se guardo")
+      //alert("se guardo")
     },error=>{
-
+      alert("error")
     }
   )
  }
 
 porFiltro(){
+  this.filtro = new Array<Transaccion>();
   this.servicio.getPorFiltro(this.origen,this.destino).subscribe(
     result=>{
       result.forEach((element:any) => {

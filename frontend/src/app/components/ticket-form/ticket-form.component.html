@@ -1,3 +1,5 @@
+<button  type="submit"  class="btn btn-secondary" (click)="volver()">Volver</button>
+
 <form class="container col-5">
     <div class="mb-3">
       <label for="iddni" class="form-label">Precio Ticket</label> 
@@ -31,8 +33,8 @@
     <br>
     <br>
 
-    <button  type="submit"  class="btn btn-primary" (click)="guardarTicket()">Guardar</button>
+    <button  type="submit" *ngIf="accion=='new'" class="btn btn-primary" (click)="guardarTicket()">Guardar</button>
     
-    <button  type="submit"  class="btn btn-primary" (click)="modificarTicket(ticket)">Modificar</button>
+    <button  type="submit" *ngIf="accion=='update'" class="btn btn-primary" (click)="modificarTicket(ticket)">Modificar</button>
  
 </form>

@@ -12,11 +12,14 @@ export class TicketComponent implements OnInit{
 
 ngOnInit(): void {
 }
+
   filtro!:Array<Ticket>;
   tickets!:Array<Ticket>;
  constructor(private servicio:TicketService ,private router:Router){
   this.tickets = new Array<Ticket>();
+  this.filtro = new Array<Ticket>();
   this.obtenerTickets();
+  this.obtenerTicketsPorFiltro()
  }
 
 obtenerTickets(){
@@ -35,6 +38,29 @@ obtenerTickets(){
   )
 }
 
+obtenerTicketsPorFiltro() {
+  this.servicio.getCategoria().subscribe(
+    result1 => {
+      if (Array.isArray(result1)) {
+        result1.forEach((element: any) => {
+          let unTicket = new Ticket();
+          Object.assign(unTicket, element);
+          this.filtro.push(unTicket);
+          unTicket = new Ticket();
+        });
+      } else {
+        let unTicket = new Ticket();
+        Object.assign(unTicket, result1);
+        this.filtro.push(unTicket);
+        unTicket = new Ticket();
+      }
+    },
+    error => {
+    
+    }
+  );
+}
+
 modificarTicket(id:string){
   this.router.navigate(["ticket-form",id])
 }
@@ -47,6 +73,8 @@ eliminarTicket(id:string) {
   this.servicio.deleteTicket(id).subscribe(
     result=> {
       console.log('Ticket eliminado correctamente');
+      this.tickets = new Array<Ticket>();
+      this.obtenerTickets();
     },
     error=> {
       console.error('Error al eliminar el ticket:', error);
@@ -54,20 +82,6 @@ eliminarTicket(id:string) {
   );
 }
 
-// obtenerCategoria(){
-//   this.servicio.getCategoria().subscribe(
-//     result=>{
-//       result.forEach((element:any) => {
-//         let unProducto = new Ticket();
-//         Object.assign(unProducto,element);
-//         this.filtro.push(unProducto);
-//         unProducto = new Ticket();
-//       });
-//     },
-//     error=>{
-
-//     }
-//   )
 }
 
 

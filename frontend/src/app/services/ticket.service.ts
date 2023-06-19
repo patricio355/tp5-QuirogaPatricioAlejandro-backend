@@ -21,6 +21,16 @@ export class TicketService {
     
     return this._http.get(this.urlBase + "ticket",httpOptions);
   }
+  getCategoria(){
+    let httpOptions ={
+      headers : new HttpHeaders ({
+
+      }),
+    params : new HttpParams()
+    }
+    
+    return this._http.get(this.urlBase + "ticket/categoria" ,httpOptions);
+  }
 
   deleteTicket(id : string):Observable<any>{
     let httpOptions ={
@@ -69,14 +79,5 @@ export class TicketService {
     
   }
 
-  getCategoria(){
-    let httpOptions ={
-      headers : new HttpHeaders ({
-
-      }),
-    params : new HttpParams()
-    }
-    
-    return this._http.get(this.urlBase + "ticket/categoria" ,httpOptions);
-  }
+  
 }

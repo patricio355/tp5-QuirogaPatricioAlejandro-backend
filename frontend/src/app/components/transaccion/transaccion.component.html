@@ -113,8 +113,8 @@
               </select>
               
           </div>
-          <label>Resultado</label>
-          <input type="text" name="nombredelacaja" placeholder="{{resultado}}" >
+          <label>Resultado : {{resultado}} </label>
+          
           
         </div >
         <div class="d-grid gap-2">
@@ -123,18 +123,27 @@
        
       </form>
 
-      <h3>Lo de guardar la transaccion no funciona, lo demas si</h3>
 
-<button (click)="obtenerTransacciones()" class="btn btn-success">Obtener transacciones</button>
+
 </div>
 
 
 <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Origen</label>
-    <input type="text" [(ngModel)]="origen" name="myImput">
-    
+    <select [(ngModel)]="origen" name="segundo">
+      <option value="KWD">KWD</option>
+      <option value="USD">USD</option>
+      <option value="EUR">EUR</option>
+      <option value="ARS">ARS</option>
+    </select>
+    <br>
         <label for="exampleInputEmail1" class="form-label">Destino</label>
-        <input type="text" [(ngModel)]="destino" name="myIput">
+        <select [(ngModel)]="destino" name="segundo">
+          <option value="KWD">KWD</option>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="ARS">ARS</option>
+        </select>
   <button class="btn btn-success" (click)="porFiltro()">Obtener</button>
   </div>
 
@@ -162,10 +171,11 @@
           </tr>
         </tbody>
       </table>
-    
+    <button (click)="obtenerTransacciones()" class="btn btn-success">Obtener transacciones</button>
   </div>
-
+  
   <table class="table">
+    
     <thead>
       <tr>
         <th>Moneda Origen</th>

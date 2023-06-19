@@ -7,10 +7,11 @@ var tickets = await Ticket.find().populate("espectador");
 res.json(tickets);
 }
 
+//duda , como obtener por categoria mandada por parametro???
 //recuperar todos los tickets de espectador local
 ticketCtrl.getTicketsCategoria = async (req, res) => {
-    var tickets = await Ticket.find({ categoriaEspectador: "l" });
-    res.json(tickets);
+    var ticketsF = await Ticket.find({ categoriaEspectador: "l" }).populate("espectador");
+    res.json(ticketsF);
     }
 
 //dar de alta un Ticket

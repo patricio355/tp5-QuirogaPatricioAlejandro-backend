@@ -17,7 +17,7 @@ export class TicketFormComponent implements OnInit{
 
   espectadores! : Array<Espectador>;
 
-  constructor (private servicio:TicketService,private espService:EspectadorService, private activatedRoute: ActivatedRoute){
+  constructor (private servicio:TicketService,private espService:EspectadorService, private activatedRoute: ActivatedRoute,private router:Router){
     this.ticket = new Ticket();
     this.espectadores = new Array<Espectador>();
   }
@@ -53,6 +53,7 @@ guardarTicket(){
     (result:any)=>{
       if (result.status == 1)
       alert(result.msg)
+      this.router.navigate(["ticket"])
     },
     error=>{
       alert(error.msg)
@@ -82,8 +83,12 @@ modificarTicket(ticket:Ticket){
   this.servicio.editTicket(ticket).subscribe(
     result =>{
       alert("se modifico")
+      this.router.navigate(["ticket"])
     }
   )
 }
 
+volver(){
+  this.router.navigate(["ticket"])
+}
 }

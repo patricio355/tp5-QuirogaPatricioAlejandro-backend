@@ -39,20 +39,13 @@ export class TransaccionService {
   altaDeTransaccion(transaccion:Transaccion):Observable<any>{
     let httpOptions ={
       headers : new HttpHeaders ({
-
+        "Content-Type": "application/json"
       }),
     params : new HttpParams()
-    .set('monedaOrigen', transaccion.monedaOrigen)
-    .set('cantidadOrigen', transaccion.cantidadOrigen)
-    .set('monedaDestino', transaccion.monedaDestino)
-    .set('cantidadDestino', transaccion.cantidadDestino)
-    .set('emailCliente', transaccion.emailCliente)
-    .set('tasaConversion', transaccion.tasaConversion)
     }
-    
-
-
-    return this._http.post(this.urlBase + "transaccion/",httpOptions)
+    let body = JSON.stringify(transaccion)
+    console.log(transaccion)
+    return this._http.post(this.urlBase + "transaccion",body,httpOptions)
   }
   
 
