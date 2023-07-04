@@ -10,7 +10,9 @@ res.json(tickets);
 //duda , como obtener por categoria mandada por parametro???
 //recuperar todos los tickets de espectador local
 ticketCtrl.getTicketsCategoria = async (req, res) => {
-    var ticketsF = await Ticket.find({ categoriaEspectador: "l" }).populate("espectador");
+    let criteria = {}
+    criteria.estado = req.query.categoria
+    var ticketsF = await Ticket.find({ categoriaEspectador: criteria.estado }).populate("espectador");
     res.json(ticketsF);
     }
 

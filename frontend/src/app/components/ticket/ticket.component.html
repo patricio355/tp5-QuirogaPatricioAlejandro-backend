@@ -15,7 +15,7 @@
         <th scope="row">${{ticket.precioTicket}}</th>
         <td>{{ticket.fechaCompra}}</td>
         <td *ngIf="ticket.categoriaEspectador == 'l'">Local</td>
-        <td *ngIf="ticket.categoriaEspectador == 'e'">Espectador</td>
+        <td *ngIf="ticket.categoriaEspectador == 'e'">Extranjero</td>
         <td>{{ticket.espectador.nombre}} {{ticket.espectador.apellido}}</td>
         <td><button type="submit" (click)="modificarTicket(ticket._id)" class="btn btn-success">Modificar</button>
         <button type="submit" (click)="eliminarTicket(ticket._id)" class="btn btn-danger">Eliminar</button></td>
@@ -26,7 +26,15 @@
 
 <br>
 <br>
-<h3 class="text-center">Solo locales</h3>
+
+<div class="mb-3">
+  <h3>Obtener Por filtro</h3>
+  <label for="idprecio" class="form-label">Categoria Espectador</label>
+  <select name="catEsp" id="id" [(ngModel)]="cat" (ngModelChange)="obtenerTicketsPorFiltro()">
+      <option value="l">Local</option>
+      <option value="e">Extranjero</option>
+    </select>
+</div>
   <table class="table bg-light">
     <thead class="bg-success-subtle">
       <tr>
@@ -42,7 +50,7 @@
         <th scope="row">${{ticket.precioTicket}}</th>
         <td>{{ticket.fechaCompra}}</td>
         <td *ngIf="ticket.categoriaEspectador == 'l'">Local</td>
-        <td *ngIf="ticket.categoriaEspectador == 'e'">Espectador</td>
+        <td *ngIf="ticket.categoriaEspectador == 'e'">Extranjero</td>
         <td>{{ticket.espectador.nombre}} {{ticket.espectador.apellido}}</td>
         <td><button type="submit" (click)="modificarTicket(ticket._id)" class="btn btn-success">Modificar</button>
         <button type="submit" (click)="eliminarTicket(ticket._id)" class="btn btn-danger">Eliminar</button></td>

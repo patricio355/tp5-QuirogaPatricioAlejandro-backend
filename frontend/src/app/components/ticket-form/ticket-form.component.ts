@@ -24,14 +24,14 @@ export class TicketFormComponent implements OnInit{
 
 ngOnInit():void{
 
-  this.activatedRoute.params.subscribe(params => {
+  this.activatedRoute.params.subscribe(async params => {
     if(params['id'] == "0"){
       this.accion ="new";
       this.cargarEspectadores();
     }else {
       this.accion = "update";
-      this.cargarEspectadores()
-      this.cargarTicket(params['id'])
+      await this.cargarEspectadores() // con el await me aseguro de que carguen los espectadores antes de cargar el ticket
+      this.cargarTicket(params['id']) 
     }
   });
 }
@@ -41,6 +41,8 @@ cargarTicket(id : string){
     result=>{
       console.log(result)
       Object.assign(this.ticket,result);
+       this.ticket.espectador = this.espectadores.find(item => (item._id == this.ticket.espectador._id))!;
+      
     },
     error=>{
 
@@ -61,7 +63,7 @@ guardarTicket(){
   )
 }
 
-cargarEspectadores(){
+async cargarEspectadores(){
 this.espService.getEspectadores().subscribe(
   result=>{
     result.forEach((element:any) => {

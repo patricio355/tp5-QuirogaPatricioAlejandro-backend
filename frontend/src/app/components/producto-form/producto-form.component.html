@@ -3,37 +3,79 @@
      Agregar un producto
     </div>
     <div class="card-body">
-        <form>
+        <form #productoForm="ngForm">
             <div class="mb-3">
                 <label for="idnombre" class="form-label">Nombre</label>
-                <input name="nombre" type="text" class="form-control" id="idnombre" [(ngModel)]="producto.nombre"
+                <input name="nombre" type="text" class="form-control" id="idnombre" [(ngModel)]="producto.nombre" required #nombre="ngModel"
                      >
+             
+
+              <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+              class="alert alert-danger">
+             
+              <div *ngIf="nombre.errors?.['required']">
+              El nombre es requerido.
               </div>
+              </div> 
+
+ </div>
+
+
+
+
+
+
+
+
+              
               <div class="mb-3">
                 <label for="iddesc" class="form-label">Descripcion</label>
-                <textarea name="desc" class="form-control" id="desc" rows="3" [(ngModel)]="producto.descripcion"
+                <textarea name="desc" class="form-control" id="desc" rows="3" [(ngModel)]="producto.descripcion" required #desc="ngModel"
                     ></textarea>
+                    
+              <div *ngIf="desc.invalid && (desc.dirty || desc.touched)"
+              class="alert alert-danger">
+             
+              <div *ngIf="desc.errors?.['required']">
+              La descripcion es requerida.
+              </div>
+              </div> 
               </div>
               <div class="mb-3">
                 <label for="idprecio" class="form-label">Precio</label>
-                <input name="precio" type="number" class="form-control" id="precio" [(ngModel)]="producto.precio"
+                <input name="precio" type="number" class="form-control" id="precio" [(ngModel)]="producto.precio" required #precio="ngModel"
                     >
+                    
+              <div *ngIf="precio.invalid && (precio.dirty || precio.touched)"
+              class="alert alert-danger">
+             
+              <div *ngIf="precio.errors?.['required']">
+              El precio es requerido.
+              </div>
+              </div> 
               </div>
               <div class="mb-3">
                 <label for="idresponsable" class="form-label">Stock</label>
-                <input name="em" type="number" class="form-control" id="il" [(ngModel)]="producto.stock"> 
+                <input name="em" type="number" class="form-control" id="il" [(ngModel)]="producto.stock" required #em="ngModel"> 
                  
+              <div *ngIf="em.invalid && (em.dirty || em.touched)"
+              class="alert alert-danger">
+             
+              <div *ngIf="em.errors?.['required']">
+              El stock es requerido.
+              </div>
+              </div> 
               </div>
 
               <div class="mb-3">
                 <label for="idimg" class="form-label">Imagen</label>
-                <input name="em" type="text" class="form-control" id="ideil" [(ngModel)]="producto.imagen"> 
+                <input name="eme" type="text" class="form-control" id="ideil" [(ngModel)]="producto.imagen" > 
                  
               </div>
 
              
 
-              <button type="button" class="btn btn-primary" (click)="guardarProducto()">Guardar</button>              
+              <button type="button" class="btn btn-primary" (click)="guardarProducto()" [disabled]="productoForm.invalid">Guardar</button>              
                             
 
         </form>

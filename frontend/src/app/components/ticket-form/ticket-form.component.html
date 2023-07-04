@@ -1,4 +1,4 @@
-<button  type="submit"  class="btn btn-secondary" (click)="volver()">Volver</button>
+<!-- <button  type="submit"  class="btn btn-secondary" (click)="volver()">Volver</button>
 
 <form class="container col-5">
     <div class="mb-3">
@@ -10,7 +10,7 @@
    
     <div class="mb-3">
         <label for="idprecio" class="form-label">Categoria Espectador</label>
-        <select name="espectador" id="id" [(ngModel)]="ticket.categoriaEspectador">
+        <select name="catEsp" id="id" [(ngModel)]="ticket.categoriaEspectador">
             <option value="l">Local</option>
             <option value="e">Extranjero</option>
           </select>
@@ -26,7 +26,7 @@
        
       </div>
       <select name="espectador" id="id" [(ngModel)]="ticket.espectador">
-        <option *ngFor=" let e of espectadores" [ngValue]="e">{{e.nombre}}</option>
+        <option *ngFor=" let e of espectadores" [ngValue]="e">{{e.nombre}} {{e.apellido}}</option>
       </select>
     
    
@@ -37,4 +37,65 @@
     
     <button  type="submit" *ngIf="accion=='update'" class="btn btn-primary" (click)="modificarTicket(ticket)">Modificar</button>
  
+</form> -->
+<form class="container col-5" #precioTicke="ngForm">
+  <div class="mb-3">
+    <label for="iddni" class="form-label">Precio Ticket</label>
+    <input type="number" class="form-control" id="iddni" [(ngModel)]="ticket.precioTicket" name="dni" required #precioTicket="ngModel">
+    
+    <div *ngIf="precioTicket.invalid && (precioTicket.dirty || precioTicket.touched)" class="alert alert-danger">
+      <div *ngIf="precioTicket.errors?.['required']">
+        El precio del ticket es requerido.
+      </div>
+    </div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="idprecio" class="form-label">Categoria Espectador</label>
+    <select name="catEsp" id="id" [(ngModel)]="ticket.categoriaEspectador" required #categoriaEspectador="ngModel">
+      <option value="l">Local</option>
+      <option value="e">Extranjero</option>
+    </select>
+    
+    <div *ngIf="categoriaEspectador.invalid && (categoriaEspectador.dirty || categoriaEspectador.touched)" class="alert alert-danger">
+      <div *ngIf="categoriaEspectador.errors?.['required']">
+        La categoría del espectador es requerida.
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="idte" class="form-label">Fecha de Compra</label>
+    <input type="text" class="form-control" id="idprecio" [(ngModel)]="ticket.fechaCompra" name="tipoEspectador" required #fechaCompra="ngModel">
+    
+    <div *ngIf="fechaCompra.invalid && (fechaCompra.dirty || fechaCompra.touched)" class="alert alert-danger">
+      <div *ngIf="fechaCompra.errors?.['required']">
+        La fecha de compra es requerida.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="mb-3">
+    <label for="idfc" class="form-label">Espectador</label>
+  
+  <select name="espectador" id="id" [(ngModel)]="ticket.espectador" required #espectador="ngModel">
+    <option *ngFor="let e of espectadores" [ngValue]="e">{{ e.nombre }} {{ e.apellido }}</option>
+  </select>
+  <div *ngIf="espectador.invalid && (espectador.dirty || espectador.touched)" class="alert alert-danger">
+    <div *ngIf="espectador.errors?.['required']">
+       El espectador es requerido.
+    </div>
+  </div>
+</div>
+  <br>
+  <br>
+
+  <button type="submit" *ngIf="accion == 'new'" class="btn btn-primary" (click)="guardarTicket()" [disabled]="precioTicke.invalid">
+    Guardar
+  </button>
+
+  <button type="submit" *ngIf="accion == 'update'" class="btn btn-primary" (click)="modificarTicket(ticket)" [disabled]="precioTicke.invalid">
+    Modificar
+  </button>
 </form>

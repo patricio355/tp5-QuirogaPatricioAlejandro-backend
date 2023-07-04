@@ -21,12 +21,12 @@ export class TicketService {
     
     return this._http.get(this.urlBase + "ticket",httpOptions);
   }
-  getCategoria(){
+  getCategoria(cat:string){
     let httpOptions ={
       headers : new HttpHeaders ({
 
       }),
-    params : new HttpParams()
+    params : new HttpParams().append("categoria",cat)
     }
     
     return this._http.get(this.urlBase + "ticket/categoria" ,httpOptions);

@@ -9,7 +9,7 @@ import { TicketService } from 'src/app/services/ticket.service';
   styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent implements OnInit{
-
+cat!:string;
 ngOnInit(): void {
 }
 
@@ -39,7 +39,8 @@ obtenerTickets(){
 }
 
 obtenerTicketsPorFiltro() {
-  this.servicio.getCategoria().subscribe(
+  this.filtro = new Array<Ticket>();
+  this.servicio.getCategoria(this.cat).subscribe(
     result1 => {
       if (Array.isArray(result1)) {
         result1.forEach((element: any) => {
